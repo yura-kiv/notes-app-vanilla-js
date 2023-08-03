@@ -1,6 +1,8 @@
 import { createAddNoteBtn } from "./components/addNoteBtn";
-import { createNoteModal } from "./components/createNoteModal";
+import { createNoteModal } from "./components/noteModal";
 import { createNotesTable } from "./components/notesTable";
+import { createShowArchivedBtn } from "./components/showArchivedBtn";
+import { createSummaryTable } from "./components/summaryTable";
 import notesService from "./services/notesService";
 
 class App {
@@ -11,11 +13,12 @@ class App {
     try {
       App.loadingElement.style.display = "block";
       // Initialization of the app
-      const noteModalAdd = createNoteModal();
+      const noteModal = createNoteModal();
       const notesData = await notesService.getNotes();
       const notesTable = createNotesTable(notesData);
       const addNoteBtn = createAddNoteBtn();
-      App.appElement.append(noteModalAdd, notesTable, addNoteBtn);
+      const summaryTable = createSummaryTable(notesData);
+      App.appElement.append(noteModal, notesTable, addNoteBtn, summaryTable);
     } catch (error) {
       console.warn(error);
       App.appElement.innerText = "Failed to load data";

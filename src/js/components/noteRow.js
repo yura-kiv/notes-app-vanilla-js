@@ -1,17 +1,24 @@
 import createElement from "../helpers/domHelper";
+import notesService from "../services/notesService";
 import { createBtn } from "./button";
 import { getIcon } from "./icon";
+import { getDateString } from "./noteModal";
+import { refreshNotesTable, refreshSummaryTable } from "./refreshComponents";
 
-function editNoteHandler(event) {
-  console.log(event);
+async function archiveNoteHandler(event) {
+  const id = event.currentTarget.parentNode.parentNode.getAttribute("note-id");
+  const result = await notesService.archiveNote({ _id: id });
+  console.log(result);
+  refreshNotesTable();
+  refreshSummaryTable();
 }
 
-function archiveNoteHandler() {
-  console.log("archive");
-}
-
-function deleteNoteHandler() {
-  console.log("delete");
+async function deleteNoteHandler(event) {
+  const id = event.currentTarget.parentNode.parentNode.getAttribute("note-id");
+  const result = await notesService.deleteNote({ _id: id });
+  console.log(result);
+  refreshNotesTable();
+  refreshSummaryTable();
 }
 
 function findDatesInContent(content) {
@@ -28,9 +35,29 @@ function formatDate(dateString) {
   return `${day}/${month}/${year}`;
 }
 
+async function editNoteHandler(event) {
+  const element = event.currentTarget;
+  const id = event.currentTarget.parentNode.parentNode.getAttribute("note-id");
+  const newName = prompt("Input new name", element.value);
+  const newContent = prompt("Input new content", element.value);
+  const newTime = getDateString();
+  const result = await notesService.editNote({
+    _id: id,
+    newName,
+    newContent,
+    newTime,
+  });
+  console.log(result);
+  refreshNotesTable();
+}
+
 export function createNoteRow(note) {
-  const { _id, name, creationTime, content, category, noteTimes } = note;
-  const noteRow = createElement({ tagName: "tr", className: "note-row" });
+  const { _id, name, creationTime, content, category } = note;
+  const noteRow = createElement({
+    tagName: "tr",
+    className: "note-row",
+    attributes: { "note-id": note._id },
+  });
   const datesMentioned = findDatesInContent(note.content);
 
   noteRow.innerHTML = `

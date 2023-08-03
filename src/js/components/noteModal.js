@@ -1,9 +1,43 @@
 import createElement from "../helpers/domHelper";
 import { categories } from "../../assets/categories";
 import { createBtn } from "./button";
+import notesService from "../services/notesService";
+import { refreshNotesTable, refreshSummaryTable } from "./refreshComponents";
 
-function addNoteHandler(event) {
-  console.log("add note");
+export function getDateString() {
+  const currentDate = new Date();
+  const optionsDate = { month: "long", day: "numeric", year: "numeric" };
+  return currentDate.toLocaleDateString("en-US", optionsDate);
+}
+
+async function addNoteHandler(event) {
+  event.target.innerHTML = "Loading...";
+  const name = document.querySelector("#name-input");
+  const content = document.querySelector("#note-content");
+  const category = document.querySelector("#category-select");
+  const creationTime = getDateString();
+  const _id = Date.now();
+
+  const result = await notesService.addNote({
+    _id,
+    name: name.value,
+    content: content.value,
+    category: category.value,
+    creationTime,
+    status: "active",
+  });
+
+  event.target.innerHTML = "Add note";
+  event.target.parentNode.parentNode.classList.add("hidden");
+  name.value = "";
+  content.value = "";
+  console.log(result);
+  await refreshNotesTable();
+  await refreshSummaryTable();
+}
+
+function closeModalHandler(event) {
+  event.target.classList.add("hidden");
 }
 
 export function createNoteModal() {
@@ -11,6 +45,7 @@ export function createNoteModal() {
     tagName: "div",
     className: "create-note-modal-wrapper hidden",
   });
+  modalWindowWrapper.addEventListener("click", closeModalHandler);
 
   const modalWindow = createElement({
     tagName: "div",

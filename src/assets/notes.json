@@ -1,15 +1,15 @@
 [
   {
     "_id": 1,
-    "name": "Test note 1",
+    "name": "Test text note 1, text",
     "content": "Test content note 1 5/7/2021 5/7/2021",
     "creationTime": "April 20, 2021",
     "category": "Task",
-    "status": "active"
+    "status": "archived"
   },
   {
     "_id": 2,
-    "name": "Test note 2",
+    "name": "Test text note 2, text",
     "content": "Test content note 2",
     "creationTime": "May 21, 2022",
     "category": "Random Thought",
@@ -17,10 +17,26 @@
   },
   {
     "_id": 3,
-    "name": "Test note 3",
-    "content": "Test content note 3 5/7/2021",
+    "name": "Test text note 3, text",
+    "content": "Test content note 3 5/7/2023 - 6/8/2023",
     "creationTime": "March 3, 2022",
     "category": "Idea",
+    "status": "archived"
+  },
+  {
+    "_id": 4,
+    "name": "Test text note 4, text",
+    "content": "Test content note 3 5/7/2023 - 6/8/2023",
+    "creationTime": "March 3, 2022",
+    "category": "Idea",
+    "status": "active"
+  },
+  {
+    "_id": 5,
+    "name": "Test text note 5, text",
+    "content": "Test content note 3 2/1/2023",
+    "creationTime": "May 3, 2023",
+    "category": "Random Thought",
     "status": "active"
   }
 ]

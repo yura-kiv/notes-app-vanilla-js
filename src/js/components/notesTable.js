@@ -1,20 +1,20 @@
 import createElement from "../helpers/domHelper";
 import { createNoteRow } from "./noteRow";
 import { getIcon } from "./icon";
+import { createShowArchivedBtn } from "./showArchivedBtn";
 
 const headerColumns = [
-  "",
   "Name",
   "Created",
-  "Category",
   "Content",
+  "Category",
   "Dates",
   getIcon("Edit"),
   getIcon("Archive"),
   getIcon("Delete"),
 ];
 
-export function createNotesTable(notesData) {
+export function createNotesTable(notesData, showArchived = false) {
   const notesTable = createElement({
     tagName: "table",
     className: "notes-table",
@@ -23,6 +23,7 @@ export function createNotesTable(notesData) {
     tagName: "tr",
     className: "table-header",
   });
+  const showArchivedBtn = createShowArchivedBtn(showArchived);
 
   headerColumns.forEach((column) => {
     const columnName = createElement({
@@ -32,11 +33,19 @@ export function createNotesTable(notesData) {
     columnName.innerHTML = column;
     tableHeader.append(columnName);
   });
+  tableHeader.insertBefore(showArchivedBtn, tableHeader.firstChild);
   notesTable.append(tableHeader);
 
   notesData.forEach((note) => {
-    const noteRow = createNoteRow(note);
-    notesTable.append(noteRow);
+    if (showArchived) {
+      note.status === "archived"
+        ? notesTable.append(createNoteRow(note))
+        : null;
+    } else {
+      note.status !== "archived"
+        ? notesTable.append(createNoteRow(note))
+        : null;
+    }
   });
   return notesTable;
 }

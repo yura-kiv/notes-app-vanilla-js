@@ -1,5 +1,7 @@
 table {
+  width: 1000px;
   background-color: azure;
+  margin-bottom: 20px;
 }
 
 th,

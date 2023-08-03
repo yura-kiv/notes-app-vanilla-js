@@ -2,7 +2,8 @@ import createElement from "../helpers/domHelper";
 import { createBtn } from "./button";
 
 function createNoteBtnHandler(event) {
-  console.log("create");
+  const noteCreateModal = document.querySelector(".create-note-modal-wrapper");
+  noteCreateModal.classList.remove("hidden");
 }
 
 export function createAddNoteBtn() {

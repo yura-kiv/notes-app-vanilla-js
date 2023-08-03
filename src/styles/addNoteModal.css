@@ -11,9 +11,9 @@
   background-color: rgba(0, 0, 0, 0.4);
 }
 
-/* .create-note-modal-wrapper.hidden {
+.create-note-modal-wrapper.hidden {
   display: none;
-} */
+}
 
 .create-note-modal {
   display: flex;
