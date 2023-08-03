@@ -2,9 +2,8 @@
   {
     "_id": 1,
     "name": "Test note 1",
-    "content": "Test content note 1",
+    "content": "Test content note 1 5/7/2021 5/7/2021",
     "creationTime": "April 20, 2021",
-    "noteTimes": ["3/5/2021", "3/6/2021"],
     "category": "Task",
     "status": "active"
   },
@@ -13,16 +12,14 @@
     "name": "Test note 2",
     "content": "Test content note 2",
     "creationTime": "May 21, 2022",
-    "noteTimes": ["5/6/2022", "4/8/2022"],
     "category": "Random Thought",
     "status": "active"
   },
   {
     "_id": 3,
     "name": "Test note 3",
-    "content": "Test content note 3",
+    "content": "Test content note 3 5/7/2021",
     "creationTime": "March 3, 2022",
-    "noteTimes": ["15/7/2022", "14/8/2022"],
     "category": "Idea",
     "status": "active"
   }

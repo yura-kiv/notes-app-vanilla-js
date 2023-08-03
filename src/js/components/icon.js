@@ -8,17 +8,17 @@ import ideaIcon from "../../assets/icons/idea.svg";
 export function getIcon(category) {
   switch (category) {
     case "Task":
-      return `<img class="note-icon" src="${taskIcon}" alt="${category} icon">`;
+      return `<img class="icon" src="${taskIcon}" alt="${category} icon">`;
     case "Random Thought":
-      return `<img class="note-icon" src="${randomIcon}" alt="${category} icon">`;
+      return `<img class="icon" src="${randomIcon}" alt="${category} icon">`;
     case "Idea":
-      return `<img class="note-icon" src="${ideaIcon}" alt="${category} icon">`;
+      return `<img class="icon" src="${ideaIcon}" alt="${category} icon">`;
     case "Edit":
-      return `<img class="note-icon" src="${editIcon}" alt="${category} icon">`;
+      return `<img class="icon" src="${editIcon}" alt="${category} icon">`;
     case "Delete":
-      return `<img class="note-icon" src="${deleteIcon}" alt="${category} icon">`;
+      return `<img class="icon" src="${deleteIcon}" alt="${category} icon">`;
     case "Archive":
-      return `<img class="note-icon" src="${archiveIcon}" alt="${category} icon">`;
+      return `<img class="icon" src="${archiveIcon}" alt="${category} icon">`;
     default:
       return "";
   }
