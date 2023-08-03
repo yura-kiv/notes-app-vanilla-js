@@ -1,0 +1,13 @@
+@import "./notesTable.css";
+@import "./addNoteModal.css";
+@import "./loader.css";
+
+.icon {
+  height: 25px;
+  width: 25px;
+}
+
+.create-note-btn {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
