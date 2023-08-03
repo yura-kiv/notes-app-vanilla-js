@@ -1,13 +1,9 @@
 import callApi from "../helpers/apiHelper";
 
 class NotesService {
-  constructor() {
-    this.endpointAll = "notes.json";
-  }
-
   async getNotes() {
     try {
-      const apiResult = await callApi(this.endpointAll);
+      const apiResult = await callApi("notes.json");
       return apiResult;
     } catch (error) {
       throw error;

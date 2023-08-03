@@ -1,6 +1,6 @@
+import { createAddNoteBtn } from "./components/addNoteBtn";
+import { createNotesTable } from "./components/notesTable";
 import notesService from "./services/notesService";
-import createElement from "./helpers/domHelper";
-import { renderNotesTable } from "./components/notesTable";
 
 class App {
   static appElement = document.querySelector("#app");
@@ -9,9 +9,12 @@ class App {
   static async startApp() {
     try {
       App.loadingElement.style.display = "block";
+
+      // Initialization of the app
       const notesData = await notesService.getNotes();
-      const notesTable = renderNotesTable(notesData);
-      App.appElement.append(notesTable);
+      const notesTable = createNotesTable(notesData);
+      const addNoteBtn = createAddNoteBtn();
+      App.appElement.append(notesTable, addNoteBtn);
     } catch (error) {
       console.warn(error);
       App.appElement.innerText = "Failed to load data";

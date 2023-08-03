@@ -1,43 +1,42 @@
 import createElement from "../helpers/domHelper";
-import editIcon from "../../assets/icons/edit.svg";
-import deleteIcon from "../../assets/icons/trash.svg";
-import archiveIcon from "../../assets/icons/archive.svg";
-import { renderNoteRow } from "./noteRow";
+import { createNoteRow } from "./noteRow";
+import { getIcon } from "./icon";
 
-export function renderNotesTable(notesData) {
+const headerColumns = [
+  "",
+  "Name",
+  "Created",
+  "Category",
+  "Content",
+  "Dates",
+  getIcon("Edit"),
+  getIcon("Archive"),
+  getIcon("Delete"),
+];
+
+export function createNotesTable(notesData) {
   const notesTable = createElement({
-    tagName: "div",
+    tagName: "table",
     className: "notes-table",
   });
-  notesTable.innerHTML = "<h2>Notes</h2>";
+  const tableHeader = createElement({
+    tagName: "tr",
+    className: "table-header",
+  });
 
-  const tableHTML = `
-      <table class="notes-table">
-        <tr>
-          <th></th>
-          <th>Name</th>
-          <th>Created</th>
-          <th>Category</th>
-          <th>Content</th>
-          <th>Dates</th>
-          <th>
-            <img class="note-icon" src="${editIcon}" alt="Note icon">
-          </th>
-          <th>
-            <img class="note-icon" src="${archiveIcon}" alt="Note icon">
-          </th>
-          <th>
-            <img class="note-icon" src="${deleteIcon}" alt="Note icon">
-          </th>
-        </tr>
-        ${notesData
-          .map((note) => {
-            return renderNoteRow(note);
-          })
-          .join("")}
-      </table>
-    `;
+  headerColumns.forEach((column) => {
+    const columnName = createElement({
+      tagName: "th",
+      className: "table-header_column-name",
+    });
+    columnName.innerHTML = column;
+    tableHeader.append(columnName);
+  });
+  notesTable.append(tableHeader);
 
-  notesTable.innerHTML += tableHTML;
+  notesData.forEach((note) => {
+    const noteRow = createNoteRow(note);
+    notesTable.append(noteRow);
+  });
   return notesTable;
 }
