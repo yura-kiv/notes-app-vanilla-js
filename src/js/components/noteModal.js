@@ -2,7 +2,7 @@ import createElement from "../helpers/domHelper";
 import { categories } from "../../assets/categories";
 import { createBtn } from "./button";
 import notesService from "../services/notesService";
-import { refreshNotesTable, refreshSummaryTable } from "./refreshComponents";
+import { refreshNotesTable, refreshSummaryTable } from "../helpers/refreshComponents";
 
 export function getDateString() {
   const currentDate = new Date();
@@ -31,7 +31,6 @@ async function addNoteHandler(event) {
   event.target.parentNode.parentNode.classList.add("hidden");
   name.value = "";
   content.value = "";
-  console.log(result);
   await refreshNotesTable();
   await refreshSummaryTable();
 }

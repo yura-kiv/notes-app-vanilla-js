@@ -1,7 +1,7 @@
 import createElement from "../helpers/domHelper";
 import notesService from "../services/notesService";
 import { createBtn } from "./button";
-import { refreshNotesTable } from "./refreshComponents";
+import { refreshNotesTable } from "../helpers/refreshComponents";
 
 function showArchivedHandler(event, showArchived) {
   refreshNotesTable(!showArchived);

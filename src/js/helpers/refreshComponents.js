@@ -1,6 +1,6 @@
 import notesService from "../services/notesService";
-import { createNotesTable } from "./notesTable";
-import { createSummaryTable } from "./summaryTable";
+import { createNotesTable } from "../components/notesTable";
+import { createSummaryTable } from "../components/summaryTable";
 
 export async function refreshNotesTable(showArchived = false) {
   const notesTable = document.querySelector(".notes-table");

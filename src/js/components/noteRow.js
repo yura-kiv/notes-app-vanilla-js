@@ -3,12 +3,11 @@ import notesService from "../services/notesService";
 import { createBtn } from "./button";
 import { getIcon } from "./icon";
 import { getDateString } from "./noteModal";
-import { refreshNotesTable, refreshSummaryTable } from "./refreshComponents";
+import { refreshNotesTable, refreshSummaryTable } from "../helpers/refreshComponents";
 
 async function archiveNoteHandler(event) {
   const id = event.currentTarget.parentNode.parentNode.getAttribute("note-id");
   const result = await notesService.archiveNote({ _id: id });
-  console.log(result);
   refreshNotesTable();
   refreshSummaryTable();
 }
@@ -16,7 +15,6 @@ async function archiveNoteHandler(event) {
 async function deleteNoteHandler(event) {
   const id = event.currentTarget.parentNode.parentNode.getAttribute("note-id");
   const result = await notesService.deleteNote({ _id: id });
-  console.log(result);
   refreshNotesTable();
   refreshSummaryTable();
 }
@@ -47,7 +45,6 @@ async function editNoteHandler(event) {
     newContent,
     newTime,
   });
-  console.log(result);
   refreshNotesTable();
 }
 
@@ -73,14 +70,10 @@ export function createNoteRow(note) {
   editBtn.append(createBtn("edit-note-btn", getIcon("Edit"), editNoteHandler));
 
   const archiveBtn = createElement({ tagName: "td" });
-  archiveBtn.append(
-    createBtn("edit-note-btn", getIcon("Archive"), archiveNoteHandler)
-  );
+  archiveBtn.append(createBtn("edit-note-btn", getIcon("Archive"), archiveNoteHandler));
 
   const deleteBtn = createElement({ tagName: "td" });
-  deleteBtn.append(
-    createBtn("edit-note-btn", getIcon("Delete"), deleteNoteHandler)
-  );
+  deleteBtn.append(createBtn("edit-note-btn", getIcon("Delete"), deleteNoteHandler));
 
   noteRow.append(editBtn, archiveBtn, deleteBtn);
   return noteRow;
